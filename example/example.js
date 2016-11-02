@@ -3,26 +3,70 @@ function jsmapDemo(div)
 {
 	if (!div) div = document.body;
 	var canvas = document.createElement("canvas");
-	var subtitle = document.createElement("subtitle");
+	canvas.style.width="100%";
+
+	var subtitle = document.createElement("div");
+	subtitle.style.fontFamily="monospace";
+	subtitle.style.textAlign="center";
+
+	var progressbar = document.createElement("div");
+	progressbar.style.height="8px";
+	progressbar.style.backgroundColor = "#ccc";
+	progressbar.style.width = "0%";
+
 	div.appendChild(canvas);
 	div.appendChild(subtitle);
-	canvas.style.display="block";
-	subtitle.style.fontFamily="monospace";
+	div.appendChild(progressbar);
 
-	jsmap.load({fps:20}).then(function(model){
+	jsmap.load({fps:25}).then(function(model){
 
-		var nframes = model.nframes;
+		var frames = [];
 		model.frames.subscribe(function(frame){
+
+			frames.push(frame);
+			var p = (frame.idx+1)*100/model.nframes;
+			progressbar.style.width = p+"%";
 
 			window.requestAnimationFrame(function(){
 				plot(frame,model,canvas);
 				subtitle.innerHTML = frame.datetime;
+
+				if (frame.idx==model.nframes-1) {
+					progressbar.style.a
+					replay(0);
+				}
 			});
 
 
+
 		});
+
+
+		function replay(cframe) {
+
+
+			window.requestAnimationFrame(function(){
+				var frame = frames[cframe];
+
+				var p = (frame.idx+1)*100/model.nframes;
+				progressbar.style.width = p+"%";
+				progressbar.style.marginLeft = (100-p)+"%";
+
+				plot(frame,model,canvas);
+				subtitle.innerHTML = frame.datetime;
+				
+				setTimeout(function(){
+					replay((cframe+1)%model.nframes);
+				},50)
+			});
+		}
+
+
 	});
+
+
 }
+
 
 
 

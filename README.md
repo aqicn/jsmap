@@ -1,4 +1,7 @@
-# jsmap loader
+# jsmap stream loader
+
+The jsmap format is compressed binary format specially designed for efficient 
+streaming of paletted images over HTTP2.
 
 For the live demo, check https://aqicn.github.io/jsmap/
 
@@ -11,7 +14,8 @@ For the live demo, check https://aqicn.github.io/jsmap/
 
 		model.frames.subscribe(function(frame){
 
-			// Frame is loaded
+			// Frame is loaded 
+			// indexed data can be accessed from frame.matrix
 
 		});
 
@@ -32,7 +36,6 @@ The promise contains a subscriber `frames` (similar to Rx) from which the applic
 
 	interface Options {
 		model?: string;
-		specie?: string;
 		fps?: number;
 	}
 
@@ -54,7 +57,13 @@ The promise contains a subscriber `frames` (similar to Rx) from which the applic
 
 
 	interface Model {
-		bounds: Array<Array<Number>>,
+		bounds: {
+			southWest: {
+				lat: number,
+				lng: number
+			}
+			northEast: LatLng
+		}
 		timespan: {
 			min:Date,
 			max:Date
@@ -68,7 +77,9 @@ The promise contains a subscriber `frames` (similar to Rx) from which the applic
 	}
 
 
-# Live Demo
+# Example
 
-Check https://aqicn.github.io/jsmap/
+See the code in the `example` folder
+
+You can also check https://aqicn.github.io/jsmap/ for a live demo.
 

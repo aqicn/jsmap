@@ -5,10 +5,10 @@ describe("load model", function() {
     var originalTimeout;
     beforeEach(function() {
         originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000;
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
     });
 
-    it("takes a long time", function(done) {
+    it("load all frames", function(done) {
 
     	var count = 0;
     	jsmap.load().then(function(model){

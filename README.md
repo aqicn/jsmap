@@ -7,7 +7,7 @@ For the live demo, check https://aqicn.github.io/jsmap/
 
 # Usage Example
 
-	<script src='bundle-jsmap-loader.js'></script>
+	<script src='lib/bundle-jsmap-loader.js'></script>
 
 	<script>
 	jsmap.load().then(function(model){
@@ -78,6 +78,13 @@ The promise contains a subscriber `frames` (similar to Rx) from which the applic
 			aqi: Array<number>
 		}
 	}
+
+
+# Testing
+
+The jasmine test are provided in the `test` folder.
+
+You can use `npm test` to run them.
 
 
 # Example

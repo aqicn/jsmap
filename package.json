@@ -1,5 +1,5 @@
 {
-  "name": "jsmap-loader",
+  "name": "jsmap",
   "version": "1.0.0",
   "description": "The jsmap format is compressed binary format specially designed for efficient  streaming of paletted images over HTTP2.",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/aqicn/jsmap/issues"
   },
-  "homepage": "https://github.com/aqicn/jsmap#readme"
+  "homepage": "https://github.com/aqicn/jsmap#readme",
+  "devDependencies": {
+    "jasmine": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.2"
+  }
 }

@@ -97,3 +97,5 @@ See the code in the `example` folder
 
 You can also check https://aqicn.github.io/jsmap/ for a live demo.
 
+<img src='example/screenshot.png'>
+

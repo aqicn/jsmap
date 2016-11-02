@@ -58,11 +58,14 @@ The promise contains a subscriber `frames` (similar to Rx) from which the applic
 
 	interface Model {
 		bounds: {
-			southWest: {
+			topLeft: {
+				lat: number,
+				lng: number
+			},
+			bottomRight: {
 				lat: number,
 				lng: number
 			}
-			northEast: LatLng
 		}
 		timespan: {
 			min:Date,

@@ -1,21 +1,24 @@
 
-init(document.body);
-
-function init(div)
+function jsmapDemo(div)
 {
+	if (!div) div = document.body;
 	var canvas = document.createElement("canvas");
 	var subtitle = document.createElement("subtitle");
 	div.appendChild(canvas);
 	div.appendChild(subtitle);
+	canvas.style.display="block";
+	subtitle.style.fontFamily="monospace";
 
 	jsmap.load({fps:20}).then(function(model){
 
+		var nframes = model.nframes;
 		model.frames.subscribe(function(frame){
 
 			window.requestAnimationFrame(function(){
 				plot(frame,model,canvas);
 				subtitle.innerHTML = frame.datetime;
 			});
+
 
 		});
 	});

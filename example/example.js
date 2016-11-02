@@ -39,11 +39,12 @@ function plot(frame, model, canvas)
 	var matrix = frame.matrix;
 	for (var y = 0; y < height; y+=1) {
 		for (var x = 0; x < width; x+=1, pin+=1) {
-			var color = colors[matrix[pin]];
+			var idx = matrix[pin];
+			var color = colors[idx];
 			imageData.data[pout++] = (color>>16)&0xff;
 			imageData.data[pout++] = (color>>8)&0xff;
 			imageData.data[pout++] = color&0xff;
-			imageData.data[pout++] = 255;
+			imageData.data[pout++] = idx?255:0;
 		}
 	}
 	ctx.putImageData(imageData, 0, 0);

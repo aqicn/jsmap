@@ -68,3 +68,8 @@ The promise contains a subscriber `frames` (similar to Rx) from which the applic
 	}
 
 
+# Live Demo
+
+<script src='https://rawgit.com/aqicn/jsmap/master/lib/bundle-jsmap-loader.js'></script>
+<script src='https://rawgit.com/aqicn/jsmap/master/example/example.js'></script>
+

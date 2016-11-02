@@ -1,9 +1,13 @@
+<img src='https://travis-ci.org/aqicn/jsmap.svg?branch=master'>
+
 # jsmap stream loader
 
 The jsmap format is compressed binary format specially designed for efficient 
 streaming of paletted images over HTTP2.
 
 For the live demo, check https://aqicn.github.io/jsmap/
+
+
 
 # Usage Example
 

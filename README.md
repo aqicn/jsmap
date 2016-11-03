@@ -36,7 +36,7 @@ The promise is fullfilled once the map model is loaded.
 
 The promise contains a subscriber `frames` (similar to Rx) from which the application can receive the frames being loaded.
 
-	load: ( options: Options ) => Promise<Model>;
+	load: ( options: Options ) => Promise<Stream>;
 
 	interface Options {
 		model?: string;
@@ -60,7 +60,7 @@ The promise contains a subscriber `frames` (similar to Rx) from which the applic
 	}
 
 
-	interface Model {
+	interface Stream {
 		bounds: {
 			topLeft: {
 				lat: number,
@@ -98,6 +98,7 @@ You can use `npm test` to run them.
 # Example
 
 The example code for the browser is located in `example/browser`.
+
 For Node, check the gif encoder example in `example/node`.
 
 You can also check https://aqicn.github.io/jsmap/ for a live demo.

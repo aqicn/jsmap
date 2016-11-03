@@ -22,20 +22,20 @@ function demo(div)
 	div.appendChild(subtitle);
 	div.appendChild(progressbar);
 
-	jsmap.load({fps:25}).then(function(model){
+	jsmap.load({fps:25}).then(function(stream){
 
 		var frames = [];
-		model.frames.subscribe(function(frame){
+		stream.frames.subscribe(function(frame){
 
 			frames.push(frame);
-			var p = (frame.idx+1)*100/model.nframes;
+			var p = (frame.idx+1)*100/stream.nframes;
 			progressbar.style.width = p+"%";
 
 			window.requestAnimationFrame(function(){
 				plot(frame,model,canvas);
 				subtitle.innerHTML = frame.datetime;
 
-				if (frame.idx==model.nframes-1) {
+				if (frame.idx==stream.nframes-1) {
 					progressbar.style.a
 					replay(0);
 				}
@@ -52,7 +52,7 @@ function demo(div)
 			window.requestAnimationFrame(function(){
 				var frame = frames[cframe];
 
-				var p = (frame.idx+1)*100/model.nframes;
+				var p = (frame.idx+1)*100/stream.nframes;
 				progressbar.style.width = (l2r?(100-p):p)+"%";
 				progressbar.style.marginLeft = (l2r?p:0)+"%";
 
@@ -60,7 +60,7 @@ function demo(div)
 				subtitle.innerHTML = frame.datetime;
 				
 				setTimeout(function(){
-					replay((cframe+1)%model.nframes,l2r);
+					replay((cframe+1)%stream.nframes,l2r);
 				},50)
 			});
 		}
@@ -80,7 +80,7 @@ function demo(div)
 			var imageData = ctx.createImageData(width, height);
 
 			var pout = 0;
-			var colors = model.lut.colors;
+			var colors = stream.lut.colors;
 			var matrix = frame.matrix;
 			for (var y = 0; y < height; y+=1) {
 				var pin = width*(height-y-1);

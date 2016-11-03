@@ -8,6 +8,7 @@
     "test": "test"
   },
   "scripts": {
+    "gif": "cd example/node && node gifencoder",
     "test": "karma start"
   },
   "repository": {

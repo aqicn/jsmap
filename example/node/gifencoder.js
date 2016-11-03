@@ -2,7 +2,7 @@
 * @Author: ron
 * @Date:   2016-11-03 10:42:44
 * @Last Modified by:   ron
-* @Last Modified time: 2016-11-03 10:59:09
+* @Last Modified time: 2016-11-03 11:29:22
 */
 
 root.fetch = require('node-fetch');
@@ -10,11 +10,11 @@ var Promise = require('promise');
 
 var finished = new Promise(function (fulfill, reject){
 
-	var jsmap = require('../lib/bundle-jsmap-loader')
-	jsmap.load().then(function(model){
+	var jsmap = require('../../lib/bundle-jsmap-loader')
+	jsmap.load().then(function(stream){
 
 
-		var width = model.size.width, height = model.size.height;
+		var width = stream.size.width, height = stream.size.height;
 		console.log("model loaded - frame size:",width,"x",height);
 
 		var scale = .6;
@@ -24,14 +24,14 @@ var finished = new Promise(function (fulfill, reject){
 		var GIFEncoder = require('gifencoder');
 		encoder = new GIFEncoder(w, h);
 
-		encoder.createReadStream().pipe(fs.createWriteStream('example/animation.gif'));
+		encoder.createReadStream().pipe(fs.createWriteStream('animation.gif'));
 
 		encoder.start();
 		encoder.setRepeat(0); // 0 for repeat, -1 for no-repeat
 		encoder.setDelay(20); // frame delay in ms
 		encoder.setQuality(8); // image quality. 10 is default.
 
-		model.frames.subscribe(function(frame){
+		stream.frames.subscribe(function(frame){
 
 			var t= new Date().getTime();
 			console.log("adding frame ",frame.idx);
@@ -43,7 +43,7 @@ var finished = new Promise(function (fulfill, reject){
 			var imageData = ctx.createImageData(w, h);
 
 			var pout = 0;
-			var colors = model.lut.colors;
+			var colors = stream.lut.colors;
 			var matrix = frame.matrix;
 			for (var y = 0; y < h; y++) {
 				var pin = width*(height-1-Math.round(y/scale));
@@ -62,7 +62,7 @@ var finished = new Promise(function (fulfill, reject){
 			var dt = new Date().getTime()-t;
 			console.log("> frame added in ",dt,"ms");
 
-			if (frame.idx==model.nframes-1) {
+			if (frame.idx==stream.nframes-1) {
 				encoder.finish();
 				fulfill();
 			}

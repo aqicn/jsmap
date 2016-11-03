@@ -5,8 +5,9 @@
 The jsmap format is compressed binary format designed for efficient 
 streaming of paletted images over HTTP2.
 
-For the live demo, check https://aqicn.github.io/jsmap/ or https://aqicn.org/forecast/models/
+<img src='example/node/animation.gif'>
 
+For the live demo, check https://aqicn.github.io/jsmap/ or https://aqicn.org/forecast/models/
 
 
 # Usage Example
@@ -14,16 +15,14 @@ For the live demo, check https://aqicn.github.io/jsmap/ or https://aqicn.org/for
 	<script src='lib/bundle-jsmap-loader.js'></script>
 
 	<script>
-	jsmap.load().then(function(model){
+	jsmap.load().then(function(stream){
+		// Stream configuration is loaded 
 
-		model.frames.subscribe(function(frame){
-
-			// Frame is loaded 
-			// indexed data can be accessed from frame.matrix
+		stream.frames.subscribe(function(frame){
+			// One frame is loaded 
+			render(frame);
 
 		});
-
-
 	});
 	</script>
 
@@ -98,5 +97,4 @@ For Node, check the gif encoder example in `example/node`.
 
 You can also check https://aqicn.github.io/jsmap/ for a live demo.
 
-<img src='example/node/animation.gif'>
 

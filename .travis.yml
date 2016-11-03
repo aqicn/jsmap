@@ -3,6 +3,8 @@
 
 language: node_js
 
+sudo: required
+
 before_script:
   - sudo apt-get install libgif-dev
   - npm install

@@ -1,7 +1,7 @@
 {
   "name": "jsmap",
   "version": "1.0.0",
-  "description": "The jsmap format is compressed binary format specially designed for efficient  streaming of paletted images over HTTP2.",
+  "description": "The jsmap format is compressed binary format designed for efficient  streaming of paletted images over HTTP2.",
   "main": "index.js",
   "directories": {
     "example": "example",

@@ -2,10 +2,10 @@
 
 # jsmap stream loader
 
-The jsmap format is compressed binary format specially designed for efficient 
+The jsmap format is compressed binary format designed for efficient 
 streaming of paletted images over HTTP2.
 
-For the live demo, check https://aqicn.github.io/jsmap/
+For the live demo, check https://aqicn.github.io/jsmap/ or https://aqicn.org/forecast/models/
 
 
 

@@ -4,6 +4,7 @@
 language: node_js
 
 before_script:
+  - sudo apt-get install libgif-dev
   - npm install
 
 script:

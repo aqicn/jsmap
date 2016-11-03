@@ -1,7 +1,7 @@
 // 
 // This example is ru
 // 
-demo(document.getElementById("main_content")|document.body);
+demo(document.getElementById("main_content")||document.body);
 
 function demo(div)
 {

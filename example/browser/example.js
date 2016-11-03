@@ -46,21 +46,21 @@ function demo(div)
 		});
 
 
-		function replay(cframe) {
+		function replay(cframe,l2r) {
 
-
+			if (cframe==0) l2r = !l2r;
 			window.requestAnimationFrame(function(){
 				var frame = frames[cframe];
 
 				var p = (frame.idx+1)*100/model.nframes;
-				progressbar.style.width = p+"%";
-				progressbar.style.marginLeft = (100-p)+"%";
+				progressbar.style.width = (l2r?(100-p):p)+"%";
+				progressbar.style.marginLeft = (l2r?p:0)+"%";
 
 				plot(frame,model,canvas);
 				subtitle.innerHTML = frame.datetime;
 				
 				setTimeout(function(){
-					replay((cframe+1)%model.nframes);
+					replay((cframe+1)%model.nframes,l2r);
 				},50)
 			});
 		}

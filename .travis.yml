@@ -5,8 +5,14 @@ language: node_js
 
 sudo: required
 
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libgif-dev
+      
 before_script:
-  - sudo apt-get install libgif-dev
   - npm install
 
 script:

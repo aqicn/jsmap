@@ -32,7 +32,7 @@ function demo(div)
 			progressbar.style.width = p+"%";
 
 			window.requestAnimationFrame(function(){
-				plot(frame,model,canvas);
+				plot(frame);
 				subtitle.innerHTML = frame.datetime;
 
 				if (frame.idx==stream.nframes-1) {
@@ -56,7 +56,7 @@ function demo(div)
 				progressbar.style.width = (l2r?(100-p):p)+"%";
 				progressbar.style.marginLeft = (l2r?p:0)+"%";
 
-				plot(frame,model,canvas);
+				plot(frame);
 				subtitle.innerHTML = frame.datetime;
 				
 				setTimeout(function(){
@@ -71,8 +71,8 @@ function demo(div)
 
 		function plot(frame) 
 		{
-			var width = frame.size.width;
-			var height = frame.size.height;
+			var width = stream.size.width;
+			var height = stream.size.height;
 
 			canvas.width = width;
 			canvas.height = height;

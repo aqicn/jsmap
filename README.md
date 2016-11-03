@@ -45,14 +45,9 @@ The promise contains a subscriber `frames` (similar to Rx) from which the applic
 
 	interface Frame
 	{
-		idx: number
-		matrix: Uint8Array;
-		basetime: Date
-		size: {
-			width: number
-			height: number
-		}
-
+		idx: number	 		/* frame number, from 0 to n-1 */
+		matrix: Uint8Array; /* frame data */
+		datetime: Date 		/* frame time */
 	}
 
 	interface Subscriber<T> {
@@ -61,7 +56,8 @@ The promise contains a subscriber `frames` (similar to Rx) from which the applic
 
 
 	interface Stream {
-		bounds: {
+		nframes: number,	/* Total number of frames */
+		bounds: {			/* Frames bounds in lat,lng */
 			topLeft: {
 				lat: number,
 				lng: number
@@ -71,20 +67,19 @@ The promise contains a subscriber `frames` (similar to Rx) from which the applic
 				lng: number
 			}
 		}
-		size: {
+		size: {				/* Frames size in pixels */
 			width: number,
 			height: number,
 		}
-		timespan: {
+		timespan: {			/* Time span of all frames */
 			min:Date,
 			max:Date
 		},
-		frames: Subscriber<Frame>,
-		nframes: number,
-		lut: {
+		lut: {				/* Lookup table for the frame data */
 			colors: Array<number>,
 			aqi: Array<number>
-		}
+		},
+		frames: Subscriber<Frame>,	/* Frames stream */
 	}
 
 

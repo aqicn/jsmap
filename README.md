@@ -71,6 +71,10 @@ The promise contains a subscriber `frames` (similar to Rx) from which the applic
 				lng: number
 			}
 		}
+		size: {
+			width: number,
+			height: number,
+		}
 		timespan: {
 			min:Date,
 			max:Date
@@ -93,9 +97,10 @@ You can use `npm test` to run them.
 
 # Example
 
-See the code in the `example` folder
+The example code for the browser is located in `example/browser`.
+For Node, check the gif encoder example in `example/node`.
 
 You can also check https://aqicn.github.io/jsmap/ for a live demo.
 
-<img src='example/screenshot.png'>
+<img src='example/node/animation.gif'>
 

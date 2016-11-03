@@ -1,5 +1,9 @@
+// 
+// This example is ru
+// 
+demo(document.getElementById("main_content")|document.body);
 
-function jsmapDemo(div)
+function demo(div)
 {
 	if (!div) div = document.body;
 	var canvas = document.createElement("canvas");

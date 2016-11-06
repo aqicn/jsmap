@@ -2,17 +2,20 @@
 * @Author: ron
 * @Date:   2016-11-03 10:42:44
 * @Last Modified by:   ron
-* @Last Modified time: 2016-11-03 11:29:22
+* @Last Modified time: 2016-11-06 13:47:36
 */
 
 root.fetch = require('node-fetch');
-var Promise = require('promise');
 
-var finished = new Promise(function (fulfill, reject){
+// createGif("tozo.gif",{model:"gfs/world2",specie:"total-ozone"});
+// createGif("wind.gif",{model:"gfs/world2",specie:"wind-gust"});
+createGif("aqi.gif",{});
+
+function createGif(output, options)
+{
 
 	var jsmap = require('../../lib/bundle-jsmap-loader')
-	jsmap.load().then(function(stream){
-
+	jsmap.load(options).then(function(stream){
 
 		var width = stream.size.width, height = stream.size.height;
 		console.log("model loaded - frame size:",width,"x",height);
@@ -24,7 +27,7 @@ var finished = new Promise(function (fulfill, reject){
 		var GIFEncoder = require('gifencoder');
 		encoder = new GIFEncoder(w, h);
 
-		encoder.createReadStream().pipe(fs.createWriteStream('animation.gif'));
+		encoder.createReadStream().pipe(fs.createWriteStream(output));
 
 		encoder.start();
 		encoder.setRepeat(0); // 0 for repeat, -1 for no-repeat
@@ -43,7 +46,7 @@ var finished = new Promise(function (fulfill, reject){
 			var imageData = ctx.createImageData(w, h);
 
 			var pout = 0;
-			var colors = stream.lut.colors;
+			var colors = stream.lut.vcolors;
 			var matrix = frame.matrix;
 			for (var y = 0; y < h; y++) {
 				var pin = width*(height-1-Math.round(y/scale));
@@ -71,15 +74,7 @@ var finished = new Promise(function (fulfill, reject){
 
 
 	}).catch(function(error){
-		console.log("Oops...",error)
+		console.log("Can not create GIF: ",error)
 	});
-
-});
-
-
-finished.then(function(){
-	console.log("all done!");
-}).catch(function(e){
-	console.log("Node Oops...",e);
-})
+}
 

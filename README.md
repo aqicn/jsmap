@@ -5,7 +5,8 @@
 The jsmap format is compressed binary format designed for efficient 
 streaming of paletted images over HTTP2.
 
-<img src='example/node/animation.gif'>
+<img src='example/node/aqi.gif'>
+<img src='example/node/wind.gif'>
 
 For the live demo, check https://aqicn.github.io/jsmap/ or https://aqicn.org/forecast/models/
 
@@ -75,7 +76,8 @@ The promise contains a subscriber `frames` (similar to Rx) from which the applic
 			max:Date
 		},
 		lut: {				/* Lookup table for the frame data */
-			colors: Array<number>,
+			colors: Array<string>,	/* HTML colors */
+			vcolors: Array<number>	/* Hex colors */
 			aqi: Array<number>
 		},
 		frames: Subscriber<Frame>,	/* Frames stream */

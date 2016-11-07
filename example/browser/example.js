@@ -80,7 +80,7 @@ function demo(div)
 			var imageData = ctx.createImageData(width, height);
 
 			var pout = 0;
-			var colors = stream.lut.colors;
+			var colors = stream.lut.vcolors;
 			var matrix = frame.matrix;
 			for (var y = 0; y < height; y+=1) {
 				var pin = width*(height-y-1);
